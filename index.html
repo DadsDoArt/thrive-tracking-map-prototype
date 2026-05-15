@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="A private prototype for a Thrive Collective course-map learning experience."
+    />
+    <title>Thrive Course Map Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Thrive Collective prototype</p>
+          <h1>When Willpower Fails</h1>
+        </div>
+        <div class="save-state" aria-live="polite">
+          <span class="pulse-dot"></span>
+          <span id="resumeText">Saved at your last stop</span>
+          <button id="resetBtn" type="button" aria-label="Reset demo progress">Reset</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro-band" aria-labelledby="intro-title">
+          <div class="intro-copy">
+            <p class="eyebrow">A low-pressure course world</p>
+            <h2 id="intro-title">Guardrails without gates.</h2>
+            <p>
+              A map-led learning space for neurodivergent adults who need progress to feel visible,
+              flexible, and easy to return to.
+            </p>
+          </div>
+          <div class="capacity-panel" aria-label="Capacity check-in">
+            <p class="panel-title">How are you arriving?</p>
+            <div class="capacity-options" id="capacityOptions">
+              <button data-capacity="low">2 minutes</button>
+              <button data-capacity="steady" class="active">Steady enough</button>
+              <button data-capacity="reflective">I can reflect</button>
+              <button data-capacity="overloaded">Overloaded</button>
+            </div>
+            <p id="capacityAdvice" class="capacity-advice">
+              Start with a short check-in, then choose any unlocked-looking place. Nothing is mandatory.
+            </p>
+          </div>
+        </section>
+
+        <section class="prototype-toggle" aria-labelledby="scenario-title">
+          <div>
+            <p class="eyebrow">Two demo routes</p>
+            <h2 id="scenario-title">Pick the conversation object</h2>
+          </div>
+          <div class="scenario-buttons" role="tablist" aria-label="Prototype scenarios">
+            <button class="active" data-scenario="living">Living app</button>
+            <button data-scenario="showpiece">Founder showpiece</button>
+          </div>
+          <p id="scenarioCopy">
+            This version behaves like a tiny app: it remembers the last stop, marks visits, and adapts the next step to capacity.
+          </p>
+        </section>
+
+        <section class="world-layout">
+          <div class="map-wrap" aria-label="Course map">
+            <div class="map-sky"></div>
+            <svg class="route-lines" viewBox="0 0 920 620" aria-hidden="true">
+              <path d="M460 525 C390 505 310 480 230 445" />
+              <path d="M460 525 C530 505 610 480 690 445" />
+              <path d="M230 445 C230 365 250 315 280 270" />
+              <path d="M690 445 C690 365 670 315 640 270" />
+              <path d="M280 270 C345 180 420 150 460 125 C500 150 575 180 640 270" />
+            </svg>
+            <div class="map-decor" aria-hidden="true">
+              <span class="sprite sunburst"></span>
+              <span class="sprite soft-star star-one"></span>
+              <span class="sprite soft-star star-two"></span>
+              <span class="sprite sprout sprout-one"></span>
+              <span class="sprite sprout sprout-two"></span>
+              <span class="sprite crystal crystal-one"></span>
+              <span class="sprite crystal crystal-two"></span>
+              <span class="platform platform-low"></span>
+              <span class="platform platform-left"></span>
+              <span class="platform platform-right"></span>
+              <span class="platform platform-top"></span>
+              <span class="ladder ladder-left"></span>
+              <span class="ladder ladder-right"></span>
+            </div>
+            <div class="avatar" id="avatar" aria-hidden="true">
+              <span class="head"></span>
+              <span class="body"></span>
+              <span class="leg leg-left"></span>
+              <span class="leg leg-right"></span>
+              <span class="shadow"></span>
+            </div>
+            <div id="mapNodes"></div>
+            <div class="map-legend">
+              <span><i class="visited"></i> visited</span>
+              <span><i class="current"></i> where you left off</span>
+              <span><i class="later"></i> saved for later</span>
+            </div>
+          </div>
+
+          <aside class="lesson-panel" aria-live="polite">
+            <div class="lesson-topline">
+              <span id="lessonType">Map stop</span>
+              <button id="saveLaterBtn" type="button">Save for later</button>
+            </div>
+            <h2 id="lessonTitle">Capacity Clearing</h2>
+            <p id="lessonSummary">
+              Begin by naming what is using energy, without forcing a fix.
+            </p>
+            <div class="lesson-actions">
+              <button id="visitBtn" type="button">Mark visited</button>
+              <button id="enoughBtn" type="button">Done enough for now</button>
+            </div>
+            <div class="micro-step">
+              <p class="panel-title">Gentle next step</p>
+              <p id="microStep">Write one sentence: “Today, the quiet drain might be…”</p>
+            </div>
+            <div class="source-preview">
+              <img id="sourceImage" src="pdf_thumbs/noticing.png" alt="Preview of the related Thrive Collective resource" />
+            </div>
+          </aside>
+        </section>
+
+        <section class="insight-band" aria-labelledby="insight-title">
+          <div>
+            <p class="eyebrow">What came from the chat</p>
+            <h2 id="insight-title">The product feeling to protect</h2>
+          </div>
+          <div class="insight-grid">
+            <article>
+              <h3>Do not make it linear</h3>
+              <p>Silvia’s key guardrail: modular support should not become “read chapter 1 before chapter 2.”</p>
+            </article>
+            <article>
+              <h3>Never lose the learner</h3>
+              <p>Your core pain point: PDFs make it too easy to lose place, momentum, and sense of distance.</p>
+            </article>
+            <article>
+              <h3>How it feels matters</h3>
+              <p>The prototype treats progress as emotional safety: returnable, visible, and never punitive.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
